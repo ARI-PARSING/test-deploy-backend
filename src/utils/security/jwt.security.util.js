@@ -18,10 +18,14 @@ const JWT_TARGET_CODE = {
         payload,
       };
     } catch (e) {
+      let message = "Token verification failed";
+      if (e instanceof jwt.JsonWebTokenError) {
+        message = e.message;
+      }
       return {
         valid: false,
         expired: false,
-        message: "Invalid token",
+        message: message,
       };
     }
   },

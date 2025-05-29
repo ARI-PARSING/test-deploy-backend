@@ -1,6 +1,7 @@
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import createHttpError from "http-errors";
 
 const uploadDir = path.join("uploads");
 
@@ -14,11 +15,11 @@ const filterFiles = (req, file, cb) => {
     if (ext === "json" || ext === "xml" || ext === "txt") {
       cb(null, true);
     } else {
-      cb(new Error("File type not allowed"), false);
+      cb(createHttpError(400, "File type not allowed"), false);
     }
   } catch (error) {
     console.error("Error in file filter:", error);
-    cb(new Error("File type not allowed"), false);
+    cb(createHttpError(500, "Internal Server Error"), false);
   }
 };
 
@@ -32,8 +33,9 @@ const storage = multer.diskStorage({
   },
 });
 
-const multerMiddleware = multer({ storage: storage, fileFilter: filterFiles }).single(
-  "file"
-);
+const multerMiddleware = multer({
+  storage: storage,
+  fileFilter: filterFiles,
+}).single("file");
 
 export { multerMiddleware };

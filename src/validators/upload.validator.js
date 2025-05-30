@@ -1,5 +1,5 @@
 import { body, param } from "express-validator";
-import FILE_TYPES from "../utils/constants/fileTypes.constant";
+import FILE_TYPES from "../utils/constants/fileTypes.constant.js";
 
 const fileExtensions = Object.values(FILE_TYPES)
 
@@ -51,6 +51,6 @@ const uploadValidator = [
     .bail(),
 ];
 
-export default {
+export {
   uploadValidator,
 };

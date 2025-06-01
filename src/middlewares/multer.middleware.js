@@ -12,7 +12,7 @@ if (!fs.existsSync(uploadDir)) {
 const filterFiles = (req, file, cb) => {
   try {
     var ext = file.originalname.split(".").pop().toLowerCase();
-    if (ext === "json" || ext === "xml" || ext === "txt") {
+    if (ext === "json" || ext === "xml" || ext === "txt" || ext === "csv") {
       cb(null, true);
     } else {
       cb(createHttpError(400, "File type not allowed"), false);

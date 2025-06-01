@@ -1,4 +1,6 @@
 
+import { flattenObject } from './objectFlatter.util.js';
+
 const flattenToKeyValueList = (entries) => {
     const flattenInformation = flattenObject(entries);
     return Object.entries(flattenInformation).map(([key, value]) => ({ key, value }));
@@ -24,7 +26,7 @@ const convertXmlToListMap = (data) => {
 }
 
 const convertCsvToListMap = (data, delimiter) => {
-    const lines = csvString.trim().split(/\r?\n/);
+    const lines = data.trim().split(/\r?\n/);
     if (lines.length < 2) throw new Error('CSV must have header and at least one row');
 
     const headers = lines[0].split(delimiter).map(h => h.trim());

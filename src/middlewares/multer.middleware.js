@@ -2,6 +2,7 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 import createHttpError from "http-errors";
+import FILE_TYPES from "../utils/constants/fileTypes.constant.js";
 
 const uploadDir = path.join("uploads");
 
@@ -12,7 +13,11 @@ if (!fs.existsSync(uploadDir)) {
 const filterFiles = (req, file, cb) => {
   try {
     var ext = file.originalname.split(".").pop().toLowerCase();
-    if (ext === "json" || ext === "xml" || ext === "txt" || ext === "csv") {
+    if (
+      ext === FILE_TYPES.CSV ||
+      ext === FILE_TYPES.JSON ||
+      ext === FILE_TYPES.XML
+    ) {
       cb(null, true);
     } else {
       cb(createHttpError(400, "File type not allowed"), false);

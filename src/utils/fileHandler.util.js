@@ -1,5 +1,5 @@
 import fs from "fs";
-import XmlParser from "fast-xml-parser";
+import { XMLParser } from "fast-xml-parser";
 
 const fileExists = (file) => {
     return fs.existsSync(file);
@@ -23,7 +23,7 @@ const readFileXml = (file) => {
     if (!fileExists(file))
         return null;
 
-    const parser = new XmlParser();
+    const parser = new XMLParser();
     return parser.parse(readFileTxt(file));
 }
 

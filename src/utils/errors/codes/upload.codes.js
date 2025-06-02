@@ -3,6 +3,7 @@ const Upload ={
     UPLOAD_FILE_TOO_LARGE: '1001',
     UPLOAD_FILE_TYPE_NOT_SUPPORTED: '1002',
     UPLOAD_FILE_UPLOAD_FAILED: '1003',
+    PROCESSINGFILE_ERROR: '1004',
 }
 
 export default Upload;

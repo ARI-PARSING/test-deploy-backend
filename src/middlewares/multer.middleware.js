@@ -4,12 +4,6 @@ import fs from "fs";
 import createHttpError from "http-errors";
 import FILE_TYPES from "../utils/constants/fileTypes.constant.js";
 
-const uploadDir = path.join("uploads");
-
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
-
 const filterFiles = (req, file, cb) => {
   try {
     var ext = file.originalname.split(".").pop().toLowerCase();

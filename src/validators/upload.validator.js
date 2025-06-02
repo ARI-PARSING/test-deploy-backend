@@ -23,7 +23,7 @@ const uploadValidator = [
     .optional()
     .isString()
     .isLength({ min: 1, max: 1 })
-    .matches(/^(".*?"|[^,;|\t]+)([,;|\t](".*?"|[^,;|\t]+))*$/)
+    .matches(/^[,;|\t]$/)
     .withMessage(
       "El delimitador debe ser una cadena de texto válida, como una coma, punto y coma, barra vertical o tabulación."
     )
@@ -40,11 +40,12 @@ const uploadValidator = [
     .bail(),
 
     //Los valores validos para el campo "pathFile" son: letras, números y algunos caracteres especiales( .,;:!?"'@#%&()\-_/+=$).
+    //ejemplo: C:\Users\Usuario\Documents\archivo.txt o /home/usuario/documentos/archivo.txt
   body("pathFile")
     .notEmpty()
     .isString()
     .isLength({ min: 1, max: 255 })
-    .matches(/^(?:[a-zA-Z]:\\|\/)?(?:[\w\s.-]+[\/\\])*[\w\s.-]+\.[a-zA-Z0-9]+$/)
+    .matches(/^(?:[a-zA-Z]:\\|\/)?(?:[\w\s.-]+[\/\\]?)*$/)
     .withMessage(
       "La ruta del archivo debe ser una cadena de texto válida y no puede estar vacía."
     )

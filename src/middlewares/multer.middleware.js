@@ -10,7 +10,8 @@ const filterFiles = (req, file, cb) => {
     if (
       ext === FILE_TYPES.CSV ||
       ext === FILE_TYPES.JSON ||
-      ext === FILE_TYPES.XML
+      ext === FILE_TYPES.XML ||
+      ext === FILE_TYPES.TXT
     ) {
       cb(null, true);
     } else {
